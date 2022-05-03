@@ -7,9 +7,8 @@ public class Przewodnik extends Pracownik {
     private List<String> jezyki = new ArrayList<>();
     private List<Wycieczka> wycieczki = new ArrayList<>();
 
-    public Przewodnik(String imie, String nazwisko, String numerTelefonu, double pensja, String jezykNatywny) {
-        super(imie, nazwisko, numerTelefonu, pensja);
-        jezyki.add(jezykNatywny);
+    public Przewodnik(String imie, String nazwisko, String numerTelefonu) {
+        super(imie, nazwisko, numerTelefonu);
     }
 
     public List<Wycieczka> getWycieczki() {
@@ -20,7 +19,9 @@ public class Przewodnik extends Pracownik {
         return jezyki;
     }
 
-    public void setJezyki(List<String> jezyki) {
-        this.jezyki = jezyki;
+
+    @Override
+    public double pensja() {
+        return getPensjaMinimalna() + 1500; //todo pensja
     }
 }

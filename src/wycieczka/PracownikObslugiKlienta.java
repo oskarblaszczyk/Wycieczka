@@ -4,20 +4,24 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PracownikObslugiKlienta extends Pracownik{
+public class PracownikObslugiKlienta extends Pracownik {
     private static String ranking = "ranking"; // todo zrobic ranking
-    private List<Obsluga> obslugaKlientow = new ArrayList<>(); //nazwa do zmiany
+    private List<ObslugaKlienta> obslugaKlientow = new ArrayList<>();
 
-    public PracownikObslugiKlienta(String imie, String nazwisko, double pensja, String numerTelefonu) {
-        super(imie, nazwisko, numerTelefonu, pensja);
+    public PracownikObslugiKlienta(String imie, String nazwisko, String numerTelefonu) {
+        super(imie, nazwisko, numerTelefonu);
     }
 
-    public List<Obsluga> getObslugaKlientow() {
+    public PracownikObslugiKlienta(String imie, String nazwisko, String numerTelefonu, RodzajUmowy rodzajUmowy) {
+        super(imie, nazwisko, numerTelefonu, rodzajUmowy);
+    }
+
+    public List<ObslugaKlienta> getObslugaKlientow() {
         return obslugaKlientow;
     }
 
-    public void sprzedajWycieczke(KlientZarejestrowany klient, Wycieczka wycieczka){
-        Obsluga obsluga = new Obsluga(LocalDate.now(), this, klient, wycieczka);
-
+    @Override
+    public double pensja() {
+        return getPensjaMinimalna() + 1500; //todo wyliczanie pensji na podstawie rodzaju umowy
     }
 }

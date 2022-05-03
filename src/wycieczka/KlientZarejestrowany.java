@@ -1,74 +1,43 @@
 package wycieczka;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class KlientZarejestrowany extends Klient {
-    private static int ostatnieId = 10000;
     private final int id;
-    public static List<KlientZarejestrowany> klienciZarejestrowani = new ArrayList<>();
-    private List<Obsluga> obslugaKlientow = new ArrayList<>();
+    private List<ObslugaKlienta> obslugaKlientow = new ArrayList<>();
+    private List<Wycieczka> wycieczki = new ArrayList<>();
 
-    public KlientZarejestrowany(String imie, String nazwisko, String numerTelefonu) {
+    public KlientZarejestrowany(String imie, String nazwisko, String numerTelefonu) throws IOException {
         super(imie, nazwisko, numerTelefonu);
-        this.id = generujID();
-        klienciZarejestrowani.add(this);
+        id = odczytajId();
+        zapiszId(id + 1);
     }
 
-    private int generujID() {
-        int id = ostatnieId + 1;
-        ostatnieId = id;
-        return id;
+    // metoda zapisujaca int do pliku oraz metoda odczytujaca z pliku
+    private void zapiszId(int id) throws IOException {
+        FileWriter fw = new FileWriter("klientId");
+        fw.write(String.valueOf(id));
+        fw.close();
     }
 
-    public List<Wycieczka> kupioneWycieczki() {
-        List<Wycieczka> wynik = new ArrayList<>();
-        for (Obsluga o : obslugaKlientow) {
-            wynik.add(o.getWycieczka());
-        }
-        return wynik;
+    private int odczytajId() throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("klientid"));
+        return Integer.parseInt(br.readLine());
     }
 
-    private double sumaWydatkow() {
-        double wynik = 0;
-        for (Obsluga o : obslugaKlientow) {
-            wynik += o.getWycieczka().getCena();
-        }
-        return wynik;
-    }
-
-    public static KlientZarejestrowany wydalNajwiecej(List<KlientZarejestrowany> klient) {
-        if (klient == null || klient.isEmpty()) {
-            throw new IllegalArgumentException("Lista nie moze byc nullem ani pusta");
-        }
-        KlientZarejestrowany wynik = klient.get(0);
-        double sumaTemp = wynik.sumaWydatkow();
-        for (KlientZarejestrowany k : klient) {
-            double s = k.sumaWydatkow();
-            if (sumaTemp < s) {
-                wynik = k;
-                sumaTemp = s;
-            }
-        }
-        return wynik;
-    }
-
-    // tymczasowo kasowanie z ekstensji- docelowo bedziemy z bazy danych wywalac
-    public void remove() {
-        klienciZarejestrowani.remove(this);
-    }
-
-
-    public static List<KlientZarejestrowany> getKlienciZarejestrowani() {
-        return klienciZarejestrowani;
-    }
 
     public int getId() {
         return id;
     }
 
-    public List<Obsluga> getObslugaKlientow() {
+    public List<Wycieczka> getWycieczki() {
+        return wycieczki;
+    }
+
+    public List<ObslugaKlienta> getObslugaKlientow() {
         return obslugaKlientow;
     }
 }

@@ -1,13 +1,17 @@
 package wycieczka;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Wycieczka {
-    private final int id;
-    private static int ostatnieId = 2000;
+    private int id;
+
     private double cena;
     private final String motyw; //todo ZWIEDZANIE, WYPOCZYNEK, AKTYWNOSC   -> enum?
     private double ocena; // 0 - 5
     private Przewodnik przewodnik;
     private KartaInformacyjna kartaInformacyjna;
+    private List<KlientZarejestrowany> klienci = new ArrayList<>();
 
     public Wycieczka(double cena, String motyw, double ocena, Przewodnik przewodnik) {
         this.cena = cena;
@@ -15,14 +19,13 @@ public abstract class Wycieczka {
         this.ocena = ocena;
         this.przewodnik = przewodnik;
         przewodnik.getWycieczki().add(this);
-        id = generujID();
     }
-
-    private int generujID() {
-        int id = ostatnieId + 1;
-        ostatnieId = id;
-        return id;
-    }
+    //todo ID zapis/odczyt plik
+//    private int generujID() {
+//        int id = ostatnieId + 1;
+//        ostatnieId = id;
+//        return id;
+//    }
 
     public double getCena() {
         return cena;
@@ -62,6 +65,10 @@ public abstract class Wycieczka {
 
     public void setKartaInformacyjna(KartaInformacyjna kartaInformacyjna) {
         this.kartaInformacyjna = kartaInformacyjna;
+    }
+
+    public List<KlientZarejestrowany> getKlienci() {
+        return klienci;
     }
 
     @Override

@@ -7,8 +7,14 @@ public class KartaInformacyjna {
     private List<String> ograniczenia = new ArrayList<>();
     private List<String> uwagi = new ArrayList<>();
     private final Wycieczka wycieczka;
+    // todo kompozycja
 
-    public KartaInformacyjna(Wycieczka wycieczka) {
+    public KartaInformacyjna(String ograniczenie, String uwaga, Wycieczka wycieczka) {
+        if(wycieczka == null){
+            throw new IllegalArgumentException("argument nie moze byc nullem");
+        }
+        ograniczenia.add(ograniczenie);
+        uwagi.add(uwaga);
         this.wycieczka = wycieczka;
     }
 
@@ -16,20 +22,20 @@ public class KartaInformacyjna {
         return ograniczenia;
     }
 
-    public void setOgraniczenia(List<String> ograniczenia) {
-        this.ograniczenia = ograniczenia;
-    }
-
     public List<String> getUwagi() {
         return uwagi;
-    }
-
-    public void setUwagi(List<String> uwagi) {
-        this.uwagi = uwagi;
     }
 
     public Wycieczka getWycieczka() {
         return wycieczka;
     }
 
+    @Override
+    public String toString() {
+        return "KartaInformacyjna{" +
+                "ograniczenia=" + ograniczenia +
+                ", uwagi=" + uwagi +
+                ", wycieczka=" + wycieczka +
+                '}';
+    }
 }

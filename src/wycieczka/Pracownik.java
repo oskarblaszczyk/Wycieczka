@@ -2,13 +2,18 @@ package wycieczka;
 
 public abstract class Pracownik extends Osoba {
     private double pensjaMinimalna = 2500;
-    private double pensja;
     private double przepracowaneGodziny;
+    private RodzajUmowy rodzajUmowy;
 
-    public Pracownik(String imie, String nazwisko, String numerTelefonu, double pensja) {
+    public Pracownik(String imie, String nazwisko, String numerTelefonu) {
         super(imie, nazwisko, numerTelefonu);
-        this.pensja = pensja;
     }
+
+    public Pracownik(String imie, String nazwisko, String numerTelefonu, RodzajUmowy rodzajUmowy) {
+        super(imie, nazwisko, numerTelefonu);
+        this.rodzajUmowy = rodzajUmowy;
+    }
+    public abstract double pensja();
 
     public double getPensjaMinimalna() {
         return pensjaMinimalna;
@@ -16,14 +21,6 @@ public abstract class Pracownik extends Osoba {
 
     public void setPensjaMinimalna(double pensjaMinimalna) {
         this.pensjaMinimalna = pensjaMinimalna;
-    }
-
-    public double getPensja() {
-        return pensja;
-    }
-
-    public void setPensja(double pensja) {
-        this.pensja = pensja;
     }
 
     public double getPrzepracowaneGodziny() {
