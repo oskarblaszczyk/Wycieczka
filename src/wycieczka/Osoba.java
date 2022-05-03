@@ -50,6 +50,6 @@ public abstract class Osoba {
 
     @Override
     public String toString() {
-        return  imie + nazwisko;
+        return imie + " " + nazwisko;
     }
 }
