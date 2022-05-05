@@ -1,4 +1,4 @@
-package wycieczka;
+package model;
 
 
 public abstract class Klient extends Osoba {

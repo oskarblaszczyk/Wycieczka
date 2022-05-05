@@ -1,4 +1,4 @@
-package wycieczka;
+package model;
 
 import java.time.LocalDate;
 
@@ -9,7 +9,7 @@ public class ObslugaKlienta {
 
 
     public ObslugaKlienta(LocalDate data, PracownikObslugiKlienta pracownikObslugiKlienta, KlientZarejestrowany klient) {
-        if (pracownikObslugiKlienta == null || klient == null){
+        if (pracownikObslugiKlienta == null || klient == null) {
             throw new IllegalArgumentException("Nie moze byc nullem");
         }
         this.data = data;
@@ -17,7 +17,6 @@ public class ObslugaKlienta {
         this.klient = klient;
         pracownikObslugiKlienta.getObslugaKlientow().add(this);
         klient.getObslugaKlientow().add(this);
-
     }
 
     public LocalDate getData() {

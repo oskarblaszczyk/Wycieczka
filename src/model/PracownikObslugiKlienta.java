@@ -1,6 +1,5 @@
-package wycieczka;
+package model;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +21,6 @@ public class PracownikObslugiKlienta extends Pracownik {
 
     @Override
     public double pensja() {
-        return getPensjaMinimalna() + 1500; //todo wyliczanie pensji na podstawie rodzaju umowy
+        return getPensjaMinimalna() + getRodzajUmowy().dodatekPensji; //todo wyliczanie pensji na podstawie rodzaju umowy -> zrobione
     }
 }

@@ -1,4 +1,4 @@
-package wycieczka;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,15 +7,16 @@ public class KartaInformacyjna {
     private List<String> ograniczenia = new ArrayList<>();
     private List<String> uwagi = new ArrayList<>();
     private final Wycieczka wycieczka;
-    // todo kompozycja
 
+    // todo kompozycja - zrobiona
     public KartaInformacyjna(String ograniczenie, String uwaga, Wycieczka wycieczka) {
-        if(wycieczka == null){
+        if (wycieczka == null) {
             throw new IllegalArgumentException("argument nie moze byc nullem");
         }
         ograniczenia.add(ograniczenie);
         uwagi.add(uwaga);
         this.wycieczka = wycieczka;
+        wycieczka.setKartaInformacyjna(this);
     }
 
     public List<String> getOgraniczenia() {

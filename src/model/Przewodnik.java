@@ -1,4 +1,4 @@
-package wycieczka;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +22,6 @@ public class Przewodnik extends Pracownik {
 
     @Override
     public double pensja() {
-        return getPensjaMinimalna() + 1500; //todo pensja
+        return getPensjaMinimalna() + getRodzajUmowy().dodatekPensji; //todo pensja zrobione
     }
 }

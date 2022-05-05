@@ -1,4 +1,4 @@
-package wycieczka;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,6 @@ public abstract class Osoba {
     public Osoba(String imie, String nazwisko, String numerTelefonu) {
         this.imie = imie;
         this.nazwisko = nazwisko;
-        this.email = email;
         this.numerTelefonu = numerTelefonu;
     }
 

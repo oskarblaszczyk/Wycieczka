@@ -1,4 +1,4 @@
-package wycieczka;
+package model;
 
 import java.io.*;
 import java.util.ArrayList;

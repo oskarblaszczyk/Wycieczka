@@ -1,4 +1,4 @@
-package wycieczka;
+package model;
 
 public abstract class Pracownik extends Osoba {
     private double pensjaMinimalna = 2500;
@@ -29,5 +29,9 @@ public abstract class Pracownik extends Osoba {
 
     public void setPrzepracowaneGodziny(double przepracowaneGodziny) {
         this.przepracowaneGodziny = przepracowaneGodziny;
+    }
+
+    public RodzajUmowy getRodzajUmowy() {
+        return rodzajUmowy;
     }
 }
